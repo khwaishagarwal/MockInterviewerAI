@@ -125,9 +125,9 @@ npm install
 
 ---
 
-### **③ Create `.env.local` in the project root**
+### **③ Create `.env.local` in the project root and `.env` in the backend folder**
 
-> Add your credentials here—do not commit this file.
+> Add your credentials here—do not commit this file (In .env.local).
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=
@@ -140,11 +140,18 @@ NEXT_PUBLIC_BACKEND_URL=
 
 NEXT_PUBLIC_VAPI_PUBLIC_KEY=
 
-NEXT_PUBLIC_PAYPAL_CLIENT_ID=
+OPENAI_API_KEY=
 
 RAZORPAY_KEY_ID=
 RAZORPAY_KEY_SECRET=
 NEXT_PUBLIC_RAZORPAY_KEY_ID=
+```
+
+> Add your credentials here—do not commit this file (In .env).
+
+```env
+OPENROUTER_API_KEY=
+OPENAI_API_KEY=
 ```
 
 ---

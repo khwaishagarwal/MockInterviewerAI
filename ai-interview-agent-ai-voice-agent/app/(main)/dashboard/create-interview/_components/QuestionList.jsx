@@ -16,7 +16,7 @@ function QuestionList({ formData, onCreateLink }) {
   const [questionList, setQuestionList] = useState([]);
 
   useEffect(() => {
-    if (formData) {
+    if (formData && formData.jobPosition && formData.jobDescription && formData.duration && formData.type?.length > 0) {
       GenerateQuestionList();
     }
   }, [formData]);
@@ -26,8 +26,13 @@ function QuestionList({ formData, onCreateLink }) {
     try {
       const result = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/ai-model`,
-        formData
-      );
+        {
+          ...formData,
+          type: Array.isArray(formData.type) ? formData.type.join(", ") : formData.type,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+      });
 
       console.log("✅ Backend response:", result.data);
 
@@ -104,12 +109,14 @@ function QuestionList({ formData, onCreateLink }) {
         <QuestionListContainer questionList={questionList} />
       )}
 
-      <div className="flex justify-end mt-10">
-        <Button onClick={onFinish} disabled={saveLoading}>
-          {saveLoading && <Loader className="animate-spin mr-2" />}
-          Created Interview Link & Finish
-        </Button>
-      </div>
+      {questionList?.length > 0 && (
+        <div className="flex justify-end mt-10">
+          <Button onClick={onFinish} disabled={saveLoading}>
+            {saveLoading && <Loader className="animate-spin mr-2" />}
+            Create Interview Link & Finish
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
