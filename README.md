@@ -30,7 +30,6 @@ The application is built using **Next.js**, **Tailwind CSS**, **Supabase**, a **
 
 - **💳 Payments (Razorpay)**
   - Razorpay integrated for payment workflows
-  - PayPal client ID also configurable
 
 - **📱 Clean & Responsive UI**
   - Built using Tailwind CSS & modern components
